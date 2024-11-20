@@ -9,6 +9,7 @@
 # will prevent the need for merging in future updates.
 
 # Theme selection for bash prompt
+export VK_LAYER_PATH="/home/buozcan/scop/libs/Vulkan-ValidationLayers/build/layers"
 
 declare -A themes
 
@@ -26,10 +27,13 @@ THEME="Purple"
 
 # Aliases
 
-alias dotbash="nvim ~/.bashrc && source ~/.bashrc"
-alias vim="nvim"
 alias open="nautilus"
-alias norminette="python3 /home/bgrhnzcn/.local/lib/python3.12/site-packages/norminette/__main__.py"
+alias code="~/vscode/code/bin/code"
+alias grep="grep --color"
+alias ls="ls --color"
+alias vim="/var/lib/flatpak/app/io.neovim.nvim/current/active/export/bin/io.neovim.nvim"
+alias vi="/var/lib/flatpak/app/io.neovim.nvim/current/active/export/bin/io.neovim.nvim"
+alias nvim="/var/lib/flatpak/app/io.neovim.nvim/current/active/export/bin/io.neovim.nvim"
 
 set_theme()
 {
@@ -62,83 +66,5 @@ update_ps1()
     fi
 }
 PROMPT_COMMAND=update_ps1
-# Prevent doublesourcing
-if [ -z "$BASHRCSOURCED" ]; then
-  BASHRCSOURCED="Y"
 
-  # are we an interactive shell?
-  if [ "$PS1" ]; then
-    if [ -z "$PROMPT_COMMAND" ]; then
-      declare -a PROMPT_COMMAND
-      case $TERM in
-      xterm*)
-        if [ -e /etc/sysconfig/bash-prompt-xterm ]; then
-            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-xterm
-        else
-            PROMPT_COMMAND='printf "\033]0;%s@%s\007" "${USER}" "${PWD/#$HOME/\~}"'
-        fi
-        ;;
-      screen*)
-        if [ -e /etc/sysconfig/bash-prompt-screen ]; then
-            PROMPT_COMMAND=/etc/sysconfig/bash-prompt-screen
-        else
-            PROMPT_COMMAND='printf "\033k%s@%s\033\\" "${USER}" "${PWD/#$HOME/\~}"'
-        fi
-        ;;
-      *)
-        [ -e /etc/sysconfig/bash-prompt-default ] && PROMPT_COMMAND=/etc/sysconfig/bash-prompt-default
-        ;;
-      esac
-    fi
-    # Turn on parallel history
-    shopt -s histappend
-    # Turn on checkwinsize
-    shopt -s checkwinsize
-    # Change the default prompt string
-    [ "$PS1" = "\\s-\\v\\\$ " ] && PS1="[\u@\W]\\$ "
-    # You might want to have e.g. tty in prompt (e.g. more virtual machines)
-    # and console windows
-    # If you want to do so, just add e.g.
-    # if [ "$PS1" ]; then
-    #   PS1="[\u@\h:\l \W]\\$ "
-    # fi
-    # to your custom modification shell script in /etc/profile.d/ directory
-  fi
-
-  if ! shopt -q login_shell ; then # We're not a login shell
-    # Need to redefine pathmunge, it gets undefined at the end of /etc/profile
-    pathmunge () {
-        case ":${PATH}:" in
-            *:"$1":*)
-                ;;
-            *)
-                if [ "$2" = "after" ] ; then
-                    PATH=$PATH:$1
-                else
-                    PATH=$1:$PATH
-                fi
-        esac
-    }
-
-    # Set default umask for non-login shell only if it is set to 0
-    [ `umask` -eq 0 ] && umask 022
-
-    SHELL=/bin/bash
-    # Only display echos from profile.d scripts if we are no login shell
-    # and interactive - otherwise just process them to set envvars
-    for i in /etc/profile.d/*.sh; do
-        if [ -r "$i" ]; then
-            if [ "$PS1" ]; then
-                . "$i"
-            else
-                . "$i" >/dev/null
-            fi
-        fi
-    done
-
-    unset i
-    unset -f pathmunge
-  fi
-
-fi
 # vim:ts=4:sw=4
