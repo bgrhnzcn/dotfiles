@@ -66,12 +66,12 @@ update_ps1()
 	local right="${clock1}${circle_left}${clock2}${clock_ico}  ${clock}${clock1}${circle_right}\e[0m"
 	if [ -z "$branch_name" ]; then
 		# No branch, not in a git repo
-		local left="${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m \
+		local left=" ${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m \
 ${user1}${circle_left}${user2}${user_ico}  ${USER}${user1}${circle_right}\e[0m \
 ${dir1}${circle_left}${dir2}${dir_ico}  ${dir}${dir1}${circle_right}\e[0m"
 	else
 		# Branch exist, print that branch and change color to indicate state.
-		local left="${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m \
+		local left=" ${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m \
 ${user1}${circle_left}${user2}${user_ico}  ${USER}${user1}${circle_right}\e[0m \
 ${git1}${circle_left}${git2}${git_ico} ${branch_name}${git1}${circle_right}\e[0m \
 ${dir1}${circle_left}${dir2}${dir_ico}  ${dir}${dir1}${circle_right}\e[0m"
@@ -82,7 +82,7 @@ ${dir1}${circle_left}${dir2}${dir_ico}  ${dir}${dir1}${circle_right}\e[0m"
 	local plain_right=$(echo -e "${right}" | sed -r 's/\x1B\[[0-9;]*[a-zA-Z]//g')
 	local space_count=$((columns - ${#plain_left} - ${#plain_right}))
 	local spaces=$(printf '%*s' ${space_count})
-	PS1=$(printf "$left$spaces$right\n \uF101 ")
+	PS1=$(printf "$left$spaces$right\n  \uF101 ")
 }
 
 PROMPT_COMMAND=update_ps1
