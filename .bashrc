@@ -2,6 +2,7 @@
 
 # Aliases
 
+alias logout="gnome-session-quit --logout"
 alias dotbash="nvim ~/.bashrc && source ~/.bashrc"
 alias vim="nvim"
 alias open="nautilus"
