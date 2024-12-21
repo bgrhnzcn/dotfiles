@@ -3,7 +3,7 @@ declare -A themes
 
 # Pre-determined palettes are here
 
-default_palette=('\e[0;35m' '\e[30;45m' '\e[0;36m' '\e[30;46m' '\e[0;34m' '\e[30;44m' '\e[0;33m' '\e[30;43m' '\e[0;32m' '\e[30;42m' '\e[0;31m' '\e[30;41m')
+default_palette=('\e[0;35m' '\e[30;45m' '\e[0;36m' '\e[30;46m' '\e[0;34m' '\e[30;44m' '\e[0;33m' '\e[30;43m' '\e[0;32m' '\e[30;42m' '\e[0;31m' '\e[30;41m' '\e[0;31m' '\e[30;41m')
 
 themes["Default"]="${default_palette[*]}"
 
@@ -15,6 +15,7 @@ user_ico="\uF2C0"
 dir_ico="\uF413"
 git_ico="\uE0A0"
 shell_ico="\uF120"
+exit_ico="\uEA87"
 
 # Theme selection variable
 
@@ -36,10 +37,13 @@ set_theme()
 	git2="${palette[9]}"
 	git_err1="${palette[10]}"
 	git_err2="${palette[11]}"
+	exit1="${palette[12]}"
+	exit2="${palette[13]}"
 }
 
 update_ps1()
 {
+	local exit="$?"
 	# In this area, getting basic data for printing prompt.
 	# Check current directory for converting tilde when $HOME exist in path.
 	local dir="${PWD}";
@@ -51,7 +55,7 @@ update_ps1()
 	# Time as Hour:Minute format.
 	local clock=$(date +"%H:%M")
 	# "/bin/bash" but skips "/bin/".
-	local shell="${SHELL: +5}"
+	local shell="bash"
 	# Get the current branch name and set color theme
 	set_theme
 	local branch_name=$(git branch --show-current 2>/dev/null)
@@ -63,7 +67,11 @@ update_ps1()
 		git1=$git_err1
 		git2=$git_err2
 	fi
-	local right="${clock1}${circle_left}${clock2}${clock_ico}  ${clock}${clock1}${circle_right}\e[0m"
+	exit_prompt=""
+	if [ $exit != "0" ]; then
+		exit_prompt="${exit1}${circle_left}${exit2}${exit_ico} ${exit}${exit1}${circle_right}\e[0m"
+	fi
+	local right="${exit_prompt} ${clock1}${circle_left}${clock2}${clock_ico}  ${clock}${clock1}${circle_right}\e[0m"
 	if [ -z "$branch_name" ]; then
 		# No branch, not in a git repo
 		local left=" ${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m \
