@@ -2,6 +2,10 @@
 
 # Enviroments
 
+if [ -d ~/Scripts ]; then
+	export PATH="$PATH:$HOME/Scripts"
+fi
+
 if command -v "nvim" &> /dev/null; then
 	export EDITOR="nvim"
 else
