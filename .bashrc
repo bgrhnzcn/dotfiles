@@ -3,7 +3,7 @@
 # Enviroments
 
 if [ -d ~/Scripts ]; then
-	export PATH="$PATH:$HOME/Scripts"
+	export PATH="$PATH:$HOME/Scripts:$HOME/.bin"
 fi
 
 if command -v "nvim" &> /dev/null; then
