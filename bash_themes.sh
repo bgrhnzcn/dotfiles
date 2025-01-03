@@ -91,7 +91,11 @@ ${dir1}${circle_left}${dir2}${dir_ico}  ${dir}${dir1}${circle_right}\e[0m"
 	local space_count=$((columns - ${#plain_left} - ${#plain_right}))
 	local spaces=$(printf '%*s' ${space_count})
 	PS1=$(printf "$left$spaces$right\n  \uF101 ")
+<<<<<<< HEAD
 	PS2=$(printf "  \uF101 ")
+=======
+	PS2="  \uF101 "
+>>>>>>> 4d23b0483a83d94f20d1613c4b32622985d060b7
 }
 
 PROMPT_COMMAND=update_ps1
