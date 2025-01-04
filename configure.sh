@@ -15,5 +15,5 @@ ln -sfn ~/dotfiles/tmux ~/.config/tmux
 ln -sfn ~/dotfiles/yazi ~/.config/yazi
 
 # Install Custom Scripts
-ln -sfn ~/dotfiles/Scripts ~/Scripts
+ln -sfn ~/dotfiles/scripts ~/.local/scripts
 
