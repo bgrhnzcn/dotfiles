@@ -2,6 +2,8 @@
 
 # Enviroments
 
+. "$HOME/.cargo/env"
+
 if [ -d ~/Scripts ]; then
 	export PATH="$PATH:$HOME/Scripts:$HOME/.bin"
 fi
