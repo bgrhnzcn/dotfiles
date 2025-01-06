@@ -4,8 +4,8 @@
 
 . "$HOME/.cargo/env"
 
-if [ -d ~/Scripts ]; then
-	export PATH="$PATH:$HOME/Scripts:$HOME/.bin"
+if [ -d ~/.local/bin ]; then
+	export PATH="$PATH:$HOME/.local/bin:$HOME/.local/scripts"
 fi
 
 if command -v "nvim" &> /dev/null; then
