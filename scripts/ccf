@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Run "make -n" and capture the output
+make_output=$(make -n 2>/dev/null)
+
+# Find the first compile command (starting with cc, gcc, or clang)
+compile_line=$(echo "$make_output" | grep -E '^(cc|gcc|clang)' | grep '\-c' | head -n 1)
+
+# Check if a compile line was found
+if [ -z "$compile_line" ]; then
+	echo "No compile line found in make output."
+	exit 1
+fi
+
+# Print the detected compile command to the terminal
+echo "Detected compile command:"
+echo "$compile_line"
+echo ""
+
+# Split the compile line into an array
+cmd=($compile_line)
+
+# Initialize variables
+flags=()
+
+# Parse the command
+for ((i = 0; i < ${#cmd[@]}; i++)); do
+	case "${cmd[$i]}" in
+		cc|gcc|g++|clang|clang++) ;;  # Skip compiler name
+		-o|-c) ((i++)) ;;             # Skip -o and -c with their values
+		*.c|*.cpp|*.cc) ;;            # Skip source files
+		*) flags+=("${cmd[$i]}") ;;
+	esac
+done
+
+# Write each flag to compile_flags.txt
+echo "Extracting compile flags to compile_flags.txt..."
+> compile_flags.txt  # Clear the file if it exists
+for flag in "${flags[@]}"; do
+	echo "$flag" >> compile_flags.txt
+done
+
+echo "Done! Flags written to compile_flags.txt."
+
