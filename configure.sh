@@ -14,7 +14,5 @@ ln -sfn ~/dotfiles/kitty ~/.config/kitty
 ln -sfn ~/dotfiles/tmux ~/.config/tmux
 ln -sfn ~/dotfiles/yazi ~/.config/yazi
 
-# Install Custom Scripts
-ln -sfn ~/dotfiles/scripts ~/.local/scripts
-
+# Install Binaries
 . ./setup_bins.sh

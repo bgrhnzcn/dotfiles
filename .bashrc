@@ -14,7 +14,7 @@ source ~/.config/bash_themes.sh
 . "$HOME/.cargo/env"
 
 if [ -d ~/.local/bin ]; then
-	export PATH="$PATH:$HOME/.local/bin:$HOME/.local/scripts"
+	export PATH="$PATH:$HOME/.local/bin"
 fi
 
 if command -v "nvim" &> /dev/null; then
