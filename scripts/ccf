@@ -4,7 +4,7 @@
 make_output=$(make -n 2>/dev/null)
 
 # Find the first compile command (starting with cc, gcc, or clang)
-compile_line=$(echo "$make_output" | grep -E '^(cc|gcc|clang)' | grep '\-c' | head -n 1)
+compile_line=$(echo "$make_output" | grep -E '^(cc|gcc|clang|c++)' | grep '\-c' | head -n 1)
 
 # Check if a compile line was found
 if [ -z "$compile_line" ]; then
@@ -26,7 +26,7 @@ flags=()
 # Parse the command
 for ((i = 0; i < ${#cmd[@]}; i++)); do
 	case "${cmd[$i]}" in
-		cc|gcc|g++|clang|clang++) ;;  # Skip compiler name
+		cc|gcc|c++|g++|clang|clang++) ;;  # Skip compiler name
 		-o|-c) ((i++)) ;;             # Skip -o and -c with their values
 		*.c|*.cpp|*.cc) ;;            # Skip source files
 		*) flags+=("${cmd[$i]}") ;;
