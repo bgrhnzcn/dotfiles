@@ -11,8 +11,6 @@ source ~/.config/bash_themes.sh
 
 # Enviroments
 
-. "$HOME/.cargo/env"
-
 if [ -d ~/.local/bin ]; then
 	export PATH="$PATH:$HOME/.local/bin"
 fi
