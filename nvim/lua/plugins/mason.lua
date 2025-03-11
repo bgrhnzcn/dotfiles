@@ -9,18 +9,19 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls" , "bashls", "clangd", "cmake", "rust_analyzer", }
+				ensure_installed = { "lua_ls", "bashls", "clangd", "cmake", "rust_analyzer", }
 			})
 		end
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.bashls.setup({})
-			lspconfig.clangd.setup({})
-			lspconfig.cmake.setup({})
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
+			lspconfig.bashls.setup({ capabilities = capabilities })
+			lspconfig.clangd.setup({ capabilities = capabilities })
+			lspconfig.cmake.setup({ capabilities = capabilities })
 			lspconfig.rust_analyzer.setup({})
 			vim.keymap.set('n', '<C-i>', vim.lsp.buf.hover, {})
 			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
