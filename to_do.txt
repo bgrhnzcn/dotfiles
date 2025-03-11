@@ -1,0 +1,1 @@
+Add a indicator for Python Virtual Environments in your Bash prompt.
