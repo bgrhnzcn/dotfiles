@@ -16,7 +16,7 @@ dir_ico="\uF413"
 git_ico="\uE0A0"
 shell_ico="\uF120"
 exit_ico="\uEA87"
-
+python_ico="\uE235"
 # Theme selection variable
 
 set_theme()
@@ -39,6 +39,8 @@ set_theme()
 	git_err2="${palette[11]}"
 	exit1="${palette[12]}"
 	exit2="${palette[13]}"
+	py1="${palette[12]}"
+	py2="${palette[13]}"
 }
 
 update_ps1()
