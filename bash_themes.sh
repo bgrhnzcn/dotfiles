@@ -106,7 +106,7 @@ update_ps1()
 	local space_count=$((columns - ${#plain_left} - ${#plain_right}))
 	local spaces=$(printf '%*s' ${space_count})
 	
-	PS1=$(printf "$left$spaces$right\n  \uF101 ")
+	PS1=$(printf "$left$spaces$right\n  \UF17A9 ")
 	PS2=$(printf "  \uF101 ")
 	PS2="  \uF101 "
 }
