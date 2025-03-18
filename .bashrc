@@ -12,7 +12,7 @@ source ~/.config/bash_themes.sh
 # Enviroments
 
 if [ -d ~/.local/bin ]; then
-	export PATH="$PATH:$HOME/.local/bin"
+	export PATH="$HOME/.local/bin:$PATH"
 fi
 
 if command -v "nvim" &> /dev/null; then
