@@ -5,6 +5,6 @@ desc = "Enter the child directory, or open the file"
 
 [[manager.prepend_keymap]]
 on   = "b"
-run  = 'shell "$SHELL" --block'
+run  = 'shell bash --block'
 desc = "Open shell here"
 
