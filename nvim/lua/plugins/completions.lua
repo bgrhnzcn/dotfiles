@@ -1,49 +1,29 @@
 return {
-	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
-		},
-	},
-	{
-		"hrsh7th/nvim-cmp",
-		config = function()
-			-- Set up nvim-cmp.
-			local cmp = require("cmp")
-			require("luasnip.loaders.from_vscode").lazy_load()
+	"saghen/blink.cmp",
+	dependencies = { "rafamadriz/friendly-snippets" },
 
-			cmp.setup({
-				snippet = {
-					-- REQUIRED - you must specify a snippet engine
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
-				},
-				window = {
-					pumheight = 5,
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<Tab>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" }, -- For luasnip users.
-					-- { name = 'ultisnips' }, -- For ultisnips users.
-					-- { name = 'snippy' }, -- For snippy users.
-				}, {
-					{ name = "buffer" },
-				}),
-			})
-		end,
+	version = "*",
+	opts = {
+		-- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+		-- 'super-tab' for mappings similar to vscode (tab to accept)
+		-- 'enter' for enter to accept
+		-- 'none' for no mappings
+		--
+		-- All presets have the following mappings:
+		-- C-space: Open menu or open docs if already open
+		-- C-n/C-p or Up/Down: Select next/previous item
+		-- C-e: Hide menu
+		-- C-k: Toggle signature help (if signature.enabled = true)
+		--
+		-- See :h blink-cmp-config-keymap for defining your own keymap
+		keymap = { preset = "super-tab" },
+
+		appearance = {
+			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- Adjusts spacing to ensure icons are aligned
+			nerd_font_variant = "normal",
+		},
+		signature = { enabled = true },
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
 }
