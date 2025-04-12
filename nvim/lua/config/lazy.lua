@@ -32,3 +32,16 @@ require("lazy").setup({
 	-- automatically check for plugin updates
 	checker = { enabled = true },
 })
+
+vim.keymap.set("n", "<C-f>", function()
+  require("neo-tree.command").execute({ source = "filesystem", "focus" })
+end, { desc = "Toggle Neo-tree (filesystem)" })
+
+vim.keymap.set("n", "<C-s>", function()
+  require("neo-tree.command").execute({ source = "document_symbols", "focus" })
+end, { desc = "Toggle Neo-tree (document_symbols)" })
+
+vim.keymap.set("n", "<C-g>", function()
+  require("neo-tree.command").execute({ source = "git_status", "focus" })
+end, { desc = "Toggle Neo-tree (git_status)" })
+
