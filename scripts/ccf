@@ -4,7 +4,7 @@
 make_output=$(make -n 2>/dev/null)
 
 # Find the first compile command (starting with cc, gcc, or clang)
-compile_line=$(echo "$make_output" | grep -E '^(cc|gcc|clang|c++)' | grep '\-c' | head -n 1)
+compile_line=$(echo "$make_output" | grep -E '^(cc|gcc|g++|clang|clang++|c++)' | grep '\-c' | head -n 1)
 
 # Check if a compile line was found
 if [ -z "$compile_line" ]; then
