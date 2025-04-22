@@ -73,7 +73,7 @@ update_ps1()
 	
 	local shell_prompt=" ${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m "
 
-	local user_prompt="${user1}${circle_left}${user2}${user_ico}  ${USER}${user1}${circle_right}\e[0m "
+	local user_prompt="${user1}${circle_left}${user2}${user_ico}  ${HOSTNAME}@${USER}${user1}${circle_right}\e[0m "
 
 	local dir_prompt="${dir1}${circle_left}${dir2}${dir_ico}  ${dir}${dir1}${circle_right}\e[0m "
 

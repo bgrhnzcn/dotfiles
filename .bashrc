@@ -38,4 +38,3 @@ alias ls="ls --color"
 alias grep="grep --color"
 alias start="~/Scripts/setup-tmux-session.sh"
 alias afclean='bash '/home/buozcan/AFC/AFCleaner.sh
-. "$HOME/.cargo/env"

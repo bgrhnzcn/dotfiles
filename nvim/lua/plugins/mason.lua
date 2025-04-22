@@ -21,7 +21,7 @@ return {
 			lspconfig.lua_ls.setup({ capabilities = capabilities })
 			lspconfig.clangd.setup({ capabilities = capabilities })
 			lspconfig.cmake.setup({ capabilities = capabilities })
-			lspconfig.rust_analyzer.setup({})
+			lspconfig.rust_analyzer.setup({ capabilities = capabilities})
 			vim.keymap.set('n', '<C-i>', vim.lsp.buf.hover, {})
 			vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, {})
 			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
