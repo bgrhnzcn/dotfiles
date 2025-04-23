@@ -12,6 +12,7 @@ circle_right="\uE0B4"
 line="\uF45B"
 clock_ico="\uF017"
 user_ico="\uF2C0"
+host_ico="\UF08B9"
 dir_ico="\uF413"
 git_ico="\uE0A0"
 shell_ico="\uF120"
@@ -29,6 +30,8 @@ set_theme()
 	clock2="${palette[1]}"
 	shell1="${palette[2]}"
 	shell2="${palette[3]}"
+	host1="${palette[6]}"
+	host2="${palette[7]}"
 	user1="${palette[4]}"
 	user2="${palette[5]}"
 	dir1="${palette[6]}"
@@ -73,7 +76,9 @@ update_ps1()
 	
 	local shell_prompt=" ${shell1}${circle_left}${shell2}${shell_ico}  ${shell}${shell1}${circle_right}\e[0m "
 
-	local user_prompt="${user1}${circle_left}${user2}${user_ico}  ${HOSTNAME}@${USER}${user1}${circle_right}\e[0m "
+	local host_prompts="${host1}${circle_left}${host2}${host_ico}  ${HOSTNAME}${host1}${circle_right}\e[0m "
+
+	local user_prompt="${user1}${circle_left}${user2}${user_ico}  ${USER}${user1}${circle_right}\e[0m "
 
 	local dir_prompt="${dir1}${circle_left}${dir2}${dir_ico}  ${dir}${dir1}${circle_right}\e[0m "
 
@@ -93,10 +98,10 @@ update_ps1()
 	
 	if [ -z "$branch_name" ]; then
 		# No branch, not in a git repo
-		local left="${shell_prompt}${user_prompt}${dir_prompt}"
+		local left="${shell_prompt}${host_prompts}${user_prompt}${dir_prompt}"
 	else
 		# Branch exist, print that branch and change color to indicate state.
-		local left="${shell_prompt}${user_prompt}${git_prompt}${dir_prompt}"
+		local left="${shell_prompt}${host_prompts}${user_prompt}${git_prompt}${dir_prompt}"
 	fi
 
 	# Get column count to calculate prompt size
