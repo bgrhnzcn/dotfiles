@@ -6,4 +6,4 @@ vim.opt.relativenumber = true
 vim.opt.listchars = { tab = "▸ ", trail = "•", space = "·" }
 vim.opt.list = true
 vim.opt.colorcolumn = "80"
-
+vim.opt.shell = "/bin/bash"
