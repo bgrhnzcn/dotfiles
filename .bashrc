@@ -38,3 +38,7 @@ alias ls="ls --color"
 alias grep="grep --color"
 alias start="~/Scripts/setup-tmux-session.sh"
 alias afclean='bash '/home/buozcan/AFC/AFCleaner.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
