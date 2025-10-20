@@ -15,6 +15,7 @@ AlignConsecutiveAssignments: true
 AlignTrailingComments: true
 AlwaysBreakTemplateDeclarations: true
 BreakBeforeBraces: Allman
+SpacesInAngles: true
 BraceWrapping:
   AfterFunction: true
   AfterClass: true
