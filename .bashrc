@@ -29,7 +29,7 @@ fi
 
 export DOTNET_ROOT=$HOME/.dotnet
 PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
-
+PATH="$PATH:$HOME/dotfiles/workenv/"
 # Aliases
 
 alias logout="gnome-session-quit --logout"
