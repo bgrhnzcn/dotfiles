@@ -27,6 +27,8 @@ else
 	export FILE_MANAGER="nautilus"
 fi
 
+export PATH="$HOME/dotfiles/workenv:$PATH"
+
 # Aliases
 
 alias logout="gnome-session-quit --logout"
