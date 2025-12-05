@@ -27,9 +27,8 @@ else
 	export FILE_MANAGER="nautilus"
 fi
 
-export DOTNET_ROOT=$HOME/.dotnet
-PATH="$PATH:$DOTNET_ROOT:$DOTNET_ROOT/tools"
-PATH="$PATH:$HOME/dotfiles/workenv/"
+export PATH="$HOME/dotfiles/workenv:$PATH"
+
 # Aliases
 
 alias logout="gnome-session-quit --logout"

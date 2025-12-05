@@ -9,8 +9,8 @@ themes["Default"]="${default_palette[*]}"
 
 circle_left="\uE0B6"
 circle_right="\uE0B4"
-line="\uF45B"
-clock_ico="\uF017"
+line="\uF46B"
+clock_ico="\uF018"
 user_ico="\uF2C0"
 host_ico="\UF08B9"
 dir_ico="\uF413"
@@ -24,7 +24,8 @@ set_theme()
 {
 	local selected_theme="${themes[$THEME]}"
 
-	local palette=($selected_theme)
+	local palette
+	read -ra palette <<< "$selected_theme"
 	
 	clock1="${palette[0]}"
 	clock2="${palette[1]}"
@@ -55,16 +56,19 @@ update_ps1()
 	if [[ "$dir" == "$HOME" ]]; then
 		dir="~"
 	elif [[ "$dir" == "$HOME/"* ]]; then
-		dir="~${dir#$HOME}"
+		dir="~${dir#"$HOME"}"
 	fi
 	# Time as Hour:Minute format.
-	local clock=$(date +"%H:%M")
+	local clock
+	clock=$(date +"%H:%M")
 	# "/bin/bash" but skips "/bin/".
 	local shell="bash"
 	# Get the current branch name and set color theme
 	set_theme
-	local branch_name=$(git branch --show-current 2>/dev/null)
-	local changes=$(git diff --name-only 2>/dev/null | wc -l 2>/dev/null)
+	local branch_name
+	branch_name=$(git branch --show-current 2>/dev/null)
+	local changes
+	changes=$(git diff --name-only 2>/dev/null | wc -l 2>/dev/null)
 	
 	if [ "$changes" == "0" ]; then
 		git1=$git1
@@ -105,11 +109,15 @@ update_ps1()
 	fi
 
 	# Get column count to calculate prompt size
-	local columns=$(tput cols)
-	local plain_left=$(echo -e "${left}" | sed -r 's/\x1B\[[0-9;]*[a-zA-Z]//g')
-	local plain_right=$(echo -e "${right}" | sed -r 's/\x1B\[[0-9;]*[a-zA-Z]//g')
+	local columns
+	columns=$(tput cols)
+	declare plain_left
+	plain_left=$(echo -e "${left}" | sed -r 's/\x1B\[[0-9;]*[a-zA-Z]//g')
+	local plain_right
+	plain_right=$(echo -e "${right}" | sed -r 's/\x1B\[[0-9;]*[a-zA-Z]//g')
 	local space_count=$((columns - ${#plain_left} - ${#plain_right}))
-	local spaces=$(printf '%*s' ${space_count})
+	local spaces
+	spaces=$(printf '%*s' ${space_count})
 	
 	PS1=$(printf "$left$spaces$right\n  \UF17A9 ")
 	PS2=$(printf "  \uF101 ")

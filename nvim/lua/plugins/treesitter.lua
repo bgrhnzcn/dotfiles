@@ -13,6 +13,7 @@ return {
 				"java",
 				"lua",
 				"javascript",
+				"typescript",
 				"html",
 				"css",
 			},
